@@ -70,6 +70,8 @@ import SwiftUI
 
     public func updateUIView(_ uiView: MultiSlider, context: UIViewRepresentableContext<MultiValueSlider>) {
         uiView.value = value
+        uiView.minimumValue = minimumValue
+        uiView.maximumValue = maximumValue
     }
 
     public func makeCoordinator() -> Coordinator {

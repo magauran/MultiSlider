@@ -15,13 +15,13 @@ import SwiftUI
     private let uiView = MultiSlider()
 
     @Binding var value: [CGFloat]
-    @State var minimumValue: CGFloat?
-    @State var maximumValue: CGFloat?
+    let minimumValue: CGFloat
+    let maximumValue: CGFloat
 
     public init(
         value: Binding<[CGFloat]>,
-        minimumValue: CGFloat? = nil,
-        maximumValue: CGFloat? = nil,
+        minimumValue: CGFloat,
+        maximumValue: CGFloat,
         isContinuous: Bool? = nil,
         snapStepSize: CGFloat? = nil,
         isHapticSnap: Bool? = nil,
@@ -45,8 +45,8 @@ import SwiftUI
         self.minimumValue = minimumValue
         self.maximumValue = maximumValue
 
-        uiView.minimumValue =? minimumValue
-        uiView.maximumValue =? maximumValue
+        uiView.minimumValue = minimumValue
+        uiView.maximumValue = maximumValue
         uiView.isContinuous =? isContinuous
         uiView.snapStepSize =? snapStepSize
         uiView.isHapticSnap =? isHapticSnap
@@ -69,6 +69,8 @@ import SwiftUI
 
     public func makeUIView(context: UIViewRepresentableContext<MultiValueSlider>) -> MultiSlider {
         uiView.addTarget(context.coordinator, action: #selector(Coordinator.valueChanged), for: .valueChanged)
+        uiView.minimumValue = minimumValue
+        uiView.maximumValue = maximumValue
         return uiView
     }
 

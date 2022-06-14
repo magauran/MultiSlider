@@ -15,6 +15,8 @@ import SwiftUI
     private let uiView = MultiSlider()
 
     @Binding var value: [CGFloat]
+    @State var minimumValue: CGFloat?
+    @State var maximumValue: CGFloat?
 
     public init(
         value: Binding<[CGFloat]>,
@@ -40,6 +42,8 @@ import SwiftUI
         valueLabelFormatter: NumberFormatter? = nil
     ) {
         _value = value
+        self.minimumValue = minimumValue
+        self.maximumValue = maximumValue
 
         uiView.minimumValue =? minimumValue
         uiView.maximumValue =? maximumValue
